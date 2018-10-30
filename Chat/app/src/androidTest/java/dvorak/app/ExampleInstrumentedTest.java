@@ -1,4 +1,4 @@
-package main.dvorak_text;
+package dvorak.app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("main.dvorak_text", appContext.getPackageName());
+        assertEquals("dvorak.app", appContext.getPackageName());
     }
 }

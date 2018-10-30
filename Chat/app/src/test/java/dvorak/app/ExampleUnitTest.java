@@ -1,4 +1,4 @@
-package main.dvorak_text;
+package dvorak.app;
 
 import org.junit.Test;
 
