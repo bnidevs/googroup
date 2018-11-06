@@ -9,3 +9,4 @@ Repository for our Google Product Development
 ### Notes
 * [10-24-18](https://docs.google.com/document/d/1EcbNyUOp4gN29N8eBe-0qABDjCyCyVD3De-eta2gccI/edit?usp=sharing)
 * [10-31-18](https://docs.google.com/document/d/15coe9NaT8We7ic4l4fhLXcMLp4U3d5BIdMh_bYFz8JU/edit?usp=sharing)
+* [11-07-18](https://docs.google.com/document/d/1S3HN4xDiC15Tdk0XMLkOKS0p6zHFyq0y0iWj8XYSSEs/edit?usp=sharing)
