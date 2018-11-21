@@ -1,5 +1,7 @@
 package dvorak.app;
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class Main extends AppCompatActivity {
+
+    /* rw002 */
+    Button btnOnOff, btnDiscover, btnSend;
+    ListView listView;
+    TextView read_msg_box, connectionStatus;
+    EditText writeMsg;
+
+    WifiManager wifiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,9 @@ public class Main extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        setup(); // rw002
+        clickListener(); // rw002
     }
 
     @Override
@@ -48,5 +61,37 @@ public class Main extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /* rw002 */
+    private void setup() {
+        btnOnOff = (Button) findViewById(R.id.onOff);
+        btnDiscover = (Button) findViewById(R.id.discover);
+        btnSend = (Button) findViewById(R.id.sendButton);
+        listView = (ListView) findViewById(R.id.peerListView);
+        read_msg_box = (TextView) findViewById(R.id.readMsg);
+        connectionStatus = (TextView) findViewById(R.id.connectionStatus);
+        writeMsg = (EditText) findViewById(R.id.writeMsg);
+
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    }
+
+    /* rw002 */
+    private void clickListener() {
+        btnOnOff.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                    if (wifiManager.isWifiEnabled()) {
+                        wifiManager.setWifiEnabled(false);
+                        btnOnOff.setText("ON");
+                    }
+                    else {
+                        wifiManager.setWifiEnabled(true);
+                        btnOnOff.setText("OFF");
+                    }
+            }
+
+        });
     }
 }
