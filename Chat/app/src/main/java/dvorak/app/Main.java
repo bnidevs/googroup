@@ -1,7 +1,9 @@
 package dvorak.app;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,13 +15,21 @@ import android.view.MenuItem;
 
 public class Main extends AppCompatActivity {
 
-    /* rw002 */
+    /* 002 */
     Button btnOnOff, btnDiscover, btnSend;
     ListView listView;
     TextView read_msg_box, connectionStatus;
     EditText writeMsg;
 
+    /* 003 */
     WifiManager wifiManager;
+    WifiP2pManager mManager;
+    WifiP2pManager.Channel mChannel;
+
+    BroadcastReceiver mReceiver;
+    IntentFilter mIntentFilter;
+
+    // end 002, 003
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +47,8 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        setup(); // rw002
-        clickListener(); // rw002
+        setup(); // 002
+        clickListener(); // 002
     }
 
     @Override
@@ -63,7 +73,7 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* rw002 */
+    /* 002 */
     private void setup() {
         btnOnOff = (Button) findViewById(R.id.onOff);
         btnDiscover = (Button) findViewById(R.id.discover);
@@ -74,9 +84,21 @@ public class Main extends AppCompatActivity {
         writeMsg = (EditText) findViewById(R.id.writeMsg);
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        /* 003 */
+        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        mChannel = mManager.initialize( this.getMainLooper(), null );
+
+        mReceiver = new com.example.android.wifidirect.WiFiDirectBroadcastReceiver(mManager, mChannel, this);
+
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction( WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION );
+        mIntentFilter.addAction( WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION );
+        mIntentFilter.addAction( WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION );
+        mIntentFilter.addAction( WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION );
     }
 
-    /* rw002 */
+    /* 002 */
     private void clickListener() {
         btnOnOff.setOnClickListener( new View.OnClickListener() {
 
@@ -93,5 +115,17 @@ public class Main extends AppCompatActivity {
             }
 
         });
+    }
+
+    /* 003 */
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mReceiver, mIntentFilter);
+    }
+
+    /* 003 */
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(mReceiver);
     }
 }
