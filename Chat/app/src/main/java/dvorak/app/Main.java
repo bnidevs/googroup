@@ -1,9 +1,11 @@
 package dvorak.app;
 
+
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,8 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
+
 
     /* 002 */
     Button btnOnOff, btnDiscover, btnSend;
@@ -31,6 +38,9 @@ public class Main extends AppCompatActivity {
 
     // end 002, 003
 
+
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +56,15 @@ public class Main extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(Main.EXTRA_MESSAGE);
+
+        // Capture the layout's TextView and set the string as its text
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(message);
 
         setup(); // 002
         clickListener(); // 002
@@ -72,6 +91,7 @@ public class Main extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /* 002 */
     private void setup() {
@@ -127,5 +147,19 @@ public class Main extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mReceiver);
+    }
+    /** Called when the user taps the Send button */
+    public void sendMessage(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+
     }
 }
