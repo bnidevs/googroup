@@ -29,47 +29,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-
-    <Button
-        android:id="@+id/onOff"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Toggle WiFi" />
-
-    <Button
-        android:id="@+id/discover"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Discover" />
-
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Send" />
-
-    <ListView
-        android:id="@+id/peerListView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/View Peers" />
-
-    <TextView
-        android:id="@+id/readMsg"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Read messages" />
-
-    <TextView
-        android:id="@+id/connectionStatus"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Connection Status" />
-
-    <EditText
-        android:id="@+id/writeMsg"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Write message" />
-
+    
 </android.support.design.widget.CoordinatorLayout>
