@@ -1,67 +1,45 @@
 package dvorak.app;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
-public class UI {
+import java.util.ArrayList;
 
-}
+public class UI extends AppCompatActivity {
 
-class Actvt extends Activity {
-    private RecyclerView rView;
-    private RecyclerView.Adapter adptr;
-    private RecyclerView.LayoutManager layoutM;
+    private static final String TAG = "ConversationList";
+
+    Storage s = new Storage();
+
+    private ListView LV;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        rView = (RecyclerView) findViewById(R.id.msgs_recycler_view);
+        setContentView(R.layout.list_layout);
+        LV = (ListView) findViewById(R.id.listView);
 
-        rView.setHasFixedSize(true);
-
-        layoutM = new LinearLayoutManager(this);
-        rView.setLayoutManager(layoutM);
-
-        adptr = new Adptr(msgs); // need to fix (fill in with dataset)
-        rView.setAdapter(adptr);
-    }
-}
-
-class Adptr extends RecyclerView.Adapter<Adptr.VwHldr> {
-    private String[] dataset;
-
-    public static class VwHldr extends RecyclerView.ViewHolder {
-        public TextView tv;
-        public VwHldr(TextView t){
-            super(t);
-            tv = t;
-        }
+        populateListView();
     }
 
-    public Adptr(String[] ds){
-        dataset = ds;
-    }
+    private void populateListView(){
 
-    @Override
-    public Adptr.VwHldr onCreateViewHolder(ViewGroup parent, int viewType){
-        TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main /* change this to msg view later on*/, parent, false);
-        VwHldr vh = new VwHldr(v);
-        return vh;
-    }
+        ArrayList<String> USRS = s.usrs();
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, USRS);
+        LV.setAdapter(adapter);
 
-    @Override
-    public void onBindViewHolder(VwHldr vh, int position) {
-        vh.tv.setText(dataset[position]);
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataset.length;
+        //set an onItemClickListener to the ListView
+        LV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+            }
+        });
     }
 }
