@@ -1,4 +1,4 @@
-package dvorak.app;
+package com.example.android.wifidirect;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -25,7 +25,6 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * A BroadcastReceiver that notifies of important wifi p2p events.
@@ -42,7 +41,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
      * @param activity activity associated with the receiver
      */
     public WiFiDirectBroadcastReceiver(WifiP2pManager manager, Channel channel,
-            WiFiDirectActivity activity) {
+                                       WiFiDirectActivity activity) {
         super();
         this.manager = manager;
         this.channel = channel;
@@ -64,11 +63,10 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
                 // Wifi Direct mode is enabled
                 activity.setIsWifiP2pEnabled(true);
-                Toast.makeText(context, "WiFi enabled", Toast.LENGTH_SHORT).show(); // 003
             } else {
                 activity.setIsWifiP2pEnabled(false);
                 activity.resetData();
-                Toast.makeText(context, "WiFi disabled", Toast.LENGTH_SHORT).show(); // 003
+
             }
             Log.d(WiFiDirectActivity.TAG, "P2P state changed - " + state);
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {

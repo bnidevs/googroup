@@ -1,6 +1,9 @@
 package dvorak.app;
+//package com.dvorak.app.ui;
 
+//import com.dvorak.R;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pManager;

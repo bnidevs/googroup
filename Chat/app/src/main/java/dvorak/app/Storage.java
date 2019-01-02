@@ -1,4 +1,4 @@
-package dvorak.app;
+package com.example.android.wifidirect;
 
 import android.content.ContentValues;
 import java.util.ArrayList;

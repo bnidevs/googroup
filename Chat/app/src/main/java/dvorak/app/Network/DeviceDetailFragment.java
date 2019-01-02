@@ -86,7 +86,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                                ((DeviceActionListener) getActivity()).cancelDisconnect();
 //                            }
 //                        }
-                        );
+                );
                 ((DeviceActionListener) getActivity()).connect(config);
 
             }
@@ -147,7 +147,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         TextView view = (TextView) mContentView.findViewById(R.id.group_owner);
         view.setText(getResources().getString(R.string.group_owner_text)
                 + ((info.isGroupOwner == true) ? getResources().getString(R.string.yes)
-                        : getResources().getString(R.string.no)));
+                : getResources().getString(R.string.no)));
 
         // InetAddress from WifiP2pInfo struct.
         view = (TextView) mContentView.findViewById(R.id.device_info);
@@ -173,7 +173,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     /**
      * Updates the UI with device data
-     * 
+     *
      * @param device the device to be displayed
      */
     public void showDetails(WifiP2pDevice device) {
@@ -291,5 +291,5 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
         return true;
     }
-
 }
+

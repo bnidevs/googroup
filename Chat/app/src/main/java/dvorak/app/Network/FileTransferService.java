@@ -1,7 +1,6 @@
 // Copyright 2011 Google Inc. All Rights Reserved.
 
 package com.example.android.wifidirect;
-
 import android.app.IntentService;
 import android.content.ContentResolver;
 import android.content.Context;
