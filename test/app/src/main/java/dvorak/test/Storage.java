@@ -1,3 +1,5 @@
+package dvorak.test;
+
 import android.content.ContentValues;
 import java.util.ArrayList;
 import java.util.Date;

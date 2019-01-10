@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import dvorak.test.ui.AlertDialogs;
+import dvorak.test.Storage;
 
 public class chatlist extends AppCompatActivity {
 
